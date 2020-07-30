@@ -1,0 +1,79 @@
+<?php
+include 'server.php';
+$query="select * from notify";
+$result=mysqli_query($con,$query);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel = "stylesheet" href = "fontawesome-free-5.13.0-web/css/all.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+#notification {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin-left:120px;
+}
+
+#notification td, #notification th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#notification tr:nth-child(even){background-color: #f2f2f2;}
+
+#notification tr:hover {background-color: #ddd;}
+
+#notification th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;text-align:center;
+}
+body{
+	background-color: #ffccff;
+}
+button{
+	color: red; -webkit-transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+<table align="center"  style="width=600px" >
+<tr>
+    <th><h2>Notification</h2></th>
+  </tr>
+<table id="notification">
+  <tr>
+    
+    <th>Notification</th>
+	<th>Action</th>
+  </tr>
+  <?php
+    while($rows=mysqli_fetch_assoc($result)){
+	      echo"
+		       <tr>
+     
+    <td>".$rows['title']."</td>
+	<td><a href='notificationdelete.php?titlen=$rows[title]' onclick='return checkdelete()'><button>Remove</button></a></td>
+    </tr>
+		  ";
+		  
+	}
+	
+  ?>
+  
+</table>
+</table>
+<script>
+<script>
+function checkdelete(){
+	return confirm('Are you sure want to remove');
+}
+</script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

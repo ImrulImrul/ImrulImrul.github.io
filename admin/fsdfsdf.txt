@@ -1,0 +1,8 @@
+	?>
+		
+  <tr>
+    <td><?php echo $rows['id'];      ?></td>
+    <td><?php echo  $rows['email'];     ?></td>
+  </tr>
+  <?php
+	}
